@@ -9,7 +9,13 @@ api.interceptors.request.use((config) => {
 });
 
 api.interceptors.response.use(
-  (res) => res,
+  (res) => {
+    const contentType = res.headers && (res.headers['content-type'] || res.headers['Content-Type'] || '');
+    if (typeof res.data === 'string' && contentType.includes('text/html')) {
+      return Promise.reject(new Error('HTML received instead of JSON response'));
+    }
+    return res;
+  },
   (err) => {
     if (err.response?.status === 401) {
       localStorage.removeItem('pos_token');

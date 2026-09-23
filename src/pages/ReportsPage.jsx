@@ -322,7 +322,7 @@ export default function ReportsPage() {
     masterAPI.getCompany().then(r => setCompany(r.data)).catch(() => { });
     // Fetch branches for admin filter
     if (isAdmin) {
-      masterAPI.getBranches().then(r => setBranches(r.data || [])).catch(() => { });
+      masterAPI.getBranches().then(r => setBranches(Array.isArray(r.data) ? r.data : [])).catch(() => { });
     }
   }, []);
 

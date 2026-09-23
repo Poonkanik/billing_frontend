@@ -18,8 +18,8 @@ export default function LoginPage() {
   // Load branches for the dropdown
   useEffect(() => {
     authAPI.getBranches()
-      .then(r => setBranches(r.data || []))
-      .catch(() => {});
+      .then(r => setBranches(Array.isArray(r.data) ? r.data : []))
+      .catch(() => setBranches([]));
   }, []);
 
   const handleSubmit = async (e) => {
@@ -132,7 +132,7 @@ export default function LoginPage() {
                   }}
                 >
                   <option value='none' style={{ background: '#1E293B', color: '#F8FAFC' }}>None</option>
-                  {branches.map(b => (
+                  {Array.isArray(branches) && branches.map(b => (
                     <option key={b._id} value={b._id} style={{ background: '#1E293B', color: '#F8FAFC' }}>
                       {b.name}
                     </option>

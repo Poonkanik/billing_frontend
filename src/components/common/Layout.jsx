@@ -129,7 +129,7 @@ export default function Layout() {
   useEffect(() => {
     if (isRoot) {
       import('../../services/api').then(({ default: api }) => {
-        const fetchSessions = () => api.get('/auth/sessions').then(r => setDeviceCount(r.data.length)).catch(() => { });
+        const fetchSessions = () => api.get('/auth/sessions').then(r => setDeviceCount(Array.isArray(r.data) ? r.data.length : 0)).catch(() => { });
         fetchSessions();
         const intv = setInterval(fetchSessions, 15000);
         return () => clearInterval(intv);
