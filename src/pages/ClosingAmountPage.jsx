@@ -17,7 +17,6 @@ export default function ClosingAmountPage() {
   // History State
   const [history, setHistory] = useState([]);
   const [historyLoading, setHistoryLoading] = useState(false);
-  const [selectedHistoryItem, setSelectedHistoryItem] = useState(null);
 
   const fetchSession = async () => {
     setLoading(true);

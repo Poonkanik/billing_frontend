@@ -102,6 +102,7 @@ function BillsDrawer({ title, filter, onClose }) {
 
   useEffect(() => {
     billsAPI.getAll(filter).then(r => { setBills(r.data); setLoading(false); }).catch(() => setLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -234,8 +235,6 @@ export default function DashboardPage() {
   const chartPadded = past7Days.map(date => {
     return chart.find(c => c._id === date) || { _id: date, sales: 0, count: 0 };
   });
-
-  const todayStr = new Date().toISOString().slice(0, 10);
 
   return (
     <div style={{ padding: 24, overflowY: 'auto', height: '100%', boxSizing: 'border-box', background: C.bg, fontFamily: "'Segoe UI',system-ui,sans-serif" }}>

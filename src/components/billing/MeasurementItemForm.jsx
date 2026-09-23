@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { C, theme } from '../../utils/theme';
+import { C } from '../../utils/theme';
 import {
   calculateAmount,
   getAvailableUnits,
@@ -37,6 +37,7 @@ export function MeasurementItemForm({
     if (!selectedUnit && availableUnits.length > 0) {
       setSelectedUnit(availableUnits[0]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product._id]);
 
   // Calculate amount when quantity or unit changes

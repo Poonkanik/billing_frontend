@@ -13,8 +13,6 @@ import OptionsPage from './pages/OptionsPage';
 import UsersPage from './pages/UsersPage';
 import DevicesPage from './pages/DevicesPage';
 import OpenCloseAmountPage from './pages/OpenCloseAmountPage';
-import OpeningAmountPage from './pages/OpeningAmountPage';
-import ClosingAmountPage from './pages/ClosingAmountPage';
 import OnlineOrdersPage from './pages/OnlineOrdersPage';
 import { C } from './utils/theme';
 

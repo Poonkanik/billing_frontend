@@ -1,12 +1,10 @@
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { inventoryAPI, masterAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { useLanguage } from '../context/LanguageContext';
 import { C } from '../utils/theme';
 
 export default function InventoryPage() {
-  const { user, isRoot, userBranchName } = useAuth();
-  const { t } = useLanguage();
+  const { user, isRoot } = useAuth();
 
   // Active tab: 'overview' | 'stockin' | 'stockout' | 'adjust' | 'transfers' | 'ledger' | 'suppliers'
   const [activeTab, setActiveTab] = useState('overview');
@@ -17,7 +15,7 @@ export default function InventoryPage() {
   const [suppliers, setSuppliers] = useState([]);
   const [branches, setBranches] = useState([]);
   const [transactions, setTransactions] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const [msg, setMsg] = useState({ text: '', type: 'success' });
 
   // Filters for Overview tab
@@ -72,7 +70,6 @@ export default function InventoryPage() {
     reason: '',
   });
 
-  const [showTransferModal, setShowTransferModal] = useState(false);
   const [transferForm, setTransferForm] = useState({
     itemId: '',
     toBranchId: '',
@@ -139,12 +136,14 @@ export default function InventoryPage() {
 
   useEffect(() => {
     fetchAllData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCategory, selectedStockStatus, selectedBranch]);
 
   useEffect(() => {
     if (activeTab === 'ledger') {
       fetchTransactions();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab, ledgerType, ledgerSearch]);
 
   // Categories list derived from current items

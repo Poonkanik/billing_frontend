@@ -2,10 +2,9 @@ import { useState, useEffect, useCallback } from 'react';
 import { Navigate } from 'react-router-dom';
 import { masterAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { C, theme } from '../utils/theme';
+import { C } from '../utils/theme';
 import { Input, Select, Card } from '../components/common/UI';
 import MasterList from '../components/master/MasterList';
-import PrinterSubForm from '../components/master/PrinterSubForm';
 
 const UNIT_OPTIONS = [
   'g', 'kg', 'ml', 'l', 'pieces', 'box', 'packet',

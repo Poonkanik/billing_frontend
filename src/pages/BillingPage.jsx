@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { masterAPI, billsAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
-import { C, theme } from '../utils/theme';
+import { C } from '../utils/theme';
 import { Btn } from '../components/common/UI';
 import { getProductRateBySalesMode, updateProductsRatesBySalesMode } from '../utils/productRateHelper';
 import { getProductName } from '../utils/productName';
@@ -356,7 +356,7 @@ function ViewBillsDrawer({ onClose, onReload, onEditBill, onPrintDuplicate }) {
 // ── Main BillingPage ─────────────────────────────────────────
 export default function BillingPage() {
   const location = useLocation();
-  const { hasPermission, user, hasBillPermission, userBranchId } = useAuth();
+  const { hasPermission, user, userBranchId } = useAuth();
   const { lang } = useLanguage();
   const urlType = new URLSearchParams(location.search).get('type') || 'dine_in';
 
@@ -364,7 +364,6 @@ export default function BillingPage() {
   const [products, setProducts] = useState([]);
   const [groups, setGroups] = useState([]);
   const [departments, setDepartments] = useState([]);
-  const [tables, setTables] = useState([]);
   const [waiters, setWaiters] = useState([]);
   const [company, setCompany] = useState(null);
   const [runningBills, setRunningBills] = useState([]);
@@ -738,10 +737,7 @@ export default function BillingPage() {
     return [{ id: 1, name: 'Template 1' }, { id: 2, name: 'Template 2' }];
   })();
   const [receiptTemplate, setReceiptTemplate] = useState(() => parseInt(localStorage.getItem('salesPrinter_activeTemplate')) || availableTemplates[0]?.id || 1);
-  const templateVariant = localStorage.getItem('salesPrinter_variant') || 'normal';
-  const gstType = localStorage.getItem('salesPrinter_gstType') || 'inclusive';
   const [showKOTPrint, setShowKOTPrint] = useState(null);
-  const [showReceiptPanel, setShowReceiptPanel] = useState(false);
 
   const cycleReceiptTemplate = () => {
     const ids = availableTemplates.map(t => t.id);

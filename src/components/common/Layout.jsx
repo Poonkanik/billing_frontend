@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
-import { C, theme } from '../../utils/theme';
+import { C } from '../../utils/theme';
 
 const LANGUAGES = [
   { code: 'en', label: 'English', flag: '🇬🇧' },
@@ -106,10 +106,6 @@ const ALL_NAV = [
 const ROLE_COLORS = {
   root: '#7C3AED', developer: '#7C3AED', head: '#2563EB', admin: '#2563EB', branch_admin: '#F59E0B',
   sales: '#16A34A', waiter: '#EAB308', cashier: '#06B6D4', dev: '#06B6D4',
-};
-const ROLE_LABELS = {
-  root: 'Root', developer: 'Developer', head: 'Head Owner', admin: 'Admin', branch_admin: 'Branch Admin',
-  sales: 'Sales', waiter: 'Waiter', cashier: 'Cashier', dev: 'Developer',
 };
 const ROLE_ICONS = {
   root: '👑', developer: '💻', head: '👑', admin: '🔑', branch_admin: '🏢',
