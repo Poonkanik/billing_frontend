@@ -1502,7 +1502,7 @@ export default function OnlineOrdersPage() {
                 <div style={{ fontSize: 12, fontWeight: 800, color: '#EA580C', marginBottom: 4 }}>Swiggy Webhook Endpoint:</div>
                 <input
                   readOnly
-                  value="http://localhost:5001/api/online-orders/webhook/swiggy"
+                  value={`${(process.env.REACT_APP_API_URL || 'https://billingbackend-production-d904.up.railway.app/api').replace(/\/+$/, '')}/online-orders/webhook/swiggy`}
                   style={{ width: '100%', padding: '8px 12px', borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 12, fontFamily: 'monospace', background: '#F8FAFC', boxSizing: 'border-box' }}
                 />
               </div>
@@ -1511,7 +1511,7 @@ export default function OnlineOrdersPage() {
                 <div style={{ fontSize: 12, fontWeight: 800, color: '#DC2626', marginBottom: 4 }}>Zomato Webhook Endpoint:</div>
                 <input
                   readOnly
-                  value="http://localhost:5001/api/online-orders/webhook/zomato"
+                  value={`${(process.env.REACT_APP_API_URL || 'https://billingbackend-production-d904.up.railway.app/api').replace(/\/+$/, '')}/online-orders/webhook/zomato`}
                   style={{ width: '100%', padding: '8px 12px', borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 12, fontFamily: 'monospace', background: '#F8FAFC', boxSizing: 'border-box' }}
                 />
               </div>

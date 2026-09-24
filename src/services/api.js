@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-const api = axios.create({ baseURL: process.env.REACT_APP_API_URL || '/api' });
+const rawUrl = process.env.REACT_APP_API_URL || process.env.REACT_APP_BACKEND_URL || 'https://billingbackend-production-d904.up.railway.app/api';
+const baseURL = rawUrl.startsWith('http') && !rawUrl.replace(/\/+$/, '').endsWith('/api')
+  ? `${rawUrl.replace(/\/+$/, '')}/api`
+  : rawUrl;
+
+const api = axios.create({ baseURL });
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('pos_token');
