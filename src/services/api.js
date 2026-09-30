@@ -2,9 +2,7 @@ import axios from 'axios';
 
 const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
 let rawUrl = process.env.REACT_APP_API_URL || process.env.REACT_APP_BACKEND_URL;
-if (isLocal && (!rawUrl || rawUrl.includes('railway.app'))) {
-  rawUrl = 'http://localhost:5001/api';
-} else if (!rawUrl || rawUrl.includes('railway.app')) {
+if (!rawUrl) {
   rawUrl = 'https://billing-backend-cduq.onrender.com/api';
 }
 const baseURL = rawUrl.startsWith('http') && !rawUrl.replace(/\/+$/, '').endsWith('/api')
