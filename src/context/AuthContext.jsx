@@ -22,10 +22,20 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const token = localStorage.getItem('pos_token');
     if (token) {
+      const safetyTimer = setTimeout(() => {
+        setLoading(false);
+      }, 5000);
+
       authAPI.me()
         .then(res => setUser(res.data))
-        .catch(() => { localStorage.removeItem('pos_token'); localStorage.removeItem('pos_user'); })
-        .finally(() => setLoading(false));
+        .catch(() => {
+          localStorage.removeItem('pos_token');
+          localStorage.removeItem('pos_user');
+        })
+        .finally(() => {
+          clearTimeout(safetyTimer);
+          setLoading(false);
+        });
     } else {
       setLoading(false);
     }
